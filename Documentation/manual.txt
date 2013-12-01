@@ -121,6 +121,14 @@ Options:
 	Make space for <number> reserve map entries
 	Relevant for dtb and asm output only.
 
+    -@
+        Generates a __symbols__ node at the root node of the resulting blob
+	for any node labels used.
+
+	When using the /plugin/ tag all unresolved label references
+	be tracked in the __fixups__ node, while all local phandle
+	references will the tracked in the __local_fixups__ node.
+
     -S <bytes>
 	Ensure the blob at least <bytes> long, adding additional
 	space if needed.
@@ -154,6 +162,8 @@ Here is a very rough overview of the layout of a DTS source file:
 		| label 'memreserve' ADDR '-' ADDR ';'
 
     devicetree:   '/' nodedef
+
+    plugindecl:   '/' 'plugin' '/' ';'
 
     nodedef:      '{' list_of_property list_of_subnode '}' ';'
 
